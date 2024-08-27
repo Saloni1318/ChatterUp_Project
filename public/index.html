@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chatter App</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        /* Custom CSS for styling */
+        #message-list {
+            max-height: calc(70vh - 110px);
+            overflow-y: auto;
+
+        }
+
+        .message.sent {
+            text-align: right;
+        }
+
+        .message.received {
+            text-align: left;
+        }
+
+        /* Adjust message input and send button */
+        #message-input {
+            width: calc(100% - 90px);
+            /* Adjust based on button width */
+        }
+
+        #send-message {
+            width: 80px;
+            /* Adjust based on input width */
+        }
+
+        /* Green dot */
+        .green-dot {
+            width: 10px;
+            height: 10px;
+            background-color: green;
+            border-radius: 50%;
+        }
+
+        /* Text color green */
+        .text-green {
+            color: green;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: white;
+        }
+
+        .avatar-container {
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 8px;
+            /* Adjust spacing */
+        }
+
+        .avatar-left {
+            float: left;
+        }
+
+        .avatar-right {
+            float: right;
+        }
+
+        .message-time  {
+            font-size: 13px;
+        }
+
+        /* .chat-bg {
+            background-image: url('https://user-images.githubusercontent.com/15075759/28719144-86dc0f70-73b1-11e7-911d-60d70fcded21.png');
+        } */
+    </style>
+</head>
+
+<body>
+    <div class="container mt-5 mb-5">
+        <!-- Main Container -->
+        <!-- Title -->
+        <h1 class="text-center mb-5"> Chatter Up 💌</h1>
+
+
+
+        <div class="row">
+            <!-- Chat Box Column (70%) -->
+            <div class="col-md-8">
+                <!-- Welcome block -->
+                <div class="welcome-container bg-light py-3 px-3 d-flex justify-content-between">
+                    <div class="d-flex align-items-center">
+                        <!-- Green dot -->
+                        <div class="green-dot mr-2"></div>
+                        <!-- Welcome message -->
+                        <span id="user-welcome" class="text-green"></span>
+                    </div>
+                    <div id="user-typing" class="text-muted"></div>
+                </div>
+                <!-- Message List -->
+                <div id="message-list" class="bg-light p-3 mb-3">
+                </div>
+
+                <!-- Input and Send Button -->
+                <div class="mt-3 d-flex align-items-center">
+                    <input type="text" id="message-input" oninput="startTyping()" onblur="stopTyping()"
+                        class="form-control mr-2" placeholder="Type your message">
+                    <button id="send-message" class="btn btn-primary">Send</button>
+                </div>
+            </div>
+
+            <!-- Active Users Column (30%) -->
+            <div class="col-md-4">
+                <div class="bg-light p-3 mb-3">
+                    <h5 class="font-weight-bold">Active Users: <span id="count"></span></h5>
+                    <!-- Connected Users Count -->
+
+                    <!-- Active Users List -->
+                    <div id="users-list">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap JS and Socket script -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://chatterup-lrjo.onrender.com/socket.io/socket.io.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>
